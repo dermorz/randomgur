@@ -2,24 +2,40 @@
 <html lang="en"> 
 	<head> 
 		<title>random imgur (possibly NSFW)</title> 
-		<meta charset="utf-8"> 
-		<script src="http://code.jquery.com/jquery-latest.js"></script> 
-		<script src="js/jquery-photo-resize.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-				$("img").photoResize({
-					bottomSpacing: 15
-				});
-			});
-		</script>
 		<style type="text/css" media="screen">
-			ul { margin: 0 auto; }
-			li { list-style-type: none; text-align: center; }
+            html {
+                height: 98%;
+            }
+            body { 
+                height: 100%;                
+            }
+			div#picture { 
+                text-align: center;
+                height: 90%;
+                background: url({{ url }}) 50% 50% no-repeat;
+                background-size: contain;
+            }
+            div#info {
+                height: 10%;
+                width: 100%;
+                display: table;
+            }
+            div#cell {
+                height: 100%;
+                width: 100%;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+
 		</style>
 	</head> 
-	<body id="photo"> 
-			<ul> 
-				<li><a href="{{ url }}"><img src="{{ url }}"></a></li>
-			</ul> 
+	<body> 
+        <div id="picture"></div>
+        <div id="info">
+            <div id="cell">
+                <a href="{{ url }}">{{ url }}</a>
+            </div>
+        </div>
 	</body> 
 </html>
