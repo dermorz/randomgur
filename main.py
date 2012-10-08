@@ -32,21 +32,28 @@ class Handler(webapp2.RequestHandler):
 
 class MainHandler(Handler):
     def get(self):
-        url = ''
+        img = '/static/down.png'
+        url = 'http://www.reddit.com/'
+        title = 'There seems to be a problem with imgur.com'
+        caption = 'Just try to kill some time at reddit.'
         while True:
             imgur = 'http://api.imgur.com'\
                     '/2/image/%s.json' % randomimgur.get_hash()
             response = urlfetch.fetch(imgur, allow_truncated=True)
-            response_json = json.loads(response.content)
-            if 'image' in response_json:
-                url = response_json['image']['links']['original']
-                title = response_json['image']['image']['title']
-                caption = response_json['image']['image']['caption']
+            try:
+                response_json = json.loads(response.content)
+                if 'image' in response_json:
+                    url = img = response_json['image']['links']['original']
+                    title = response_json['image']['image']['title']
+                    caption = response_json['image']['image']['caption']
+                    break
+                else:
+                    logging.info('image not found.')
+            except:
+                logging.error('imgur down?')
                 break
-            else:
-                logging.info('image not found.')
-                
-        self.render('templ/index.htm', {'url': url,
+        self.render('templ/index.htm', {'img': img,
+                                        'url': url,
                                         'title': title,
                                         'caption': caption})
 
