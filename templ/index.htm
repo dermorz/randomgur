@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+	<head> 
+		<title>random imgur (possibly NSFW)</title> 
+		<meta charset="utf-8"> 
+		<script src="http://code.jquery.com/jquery-latest.js"></script> 
+		<script src="js/jquery-photo-resize.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$("img").photoResize({
+					bottomSpacing: 15
+				});
+			});
+		</script>
+		<style type="text/css" media="screen">
+			ul { margin: 0 auto; }
+			li { list-style-type: none; text-align: center; }
+		</style>
+	</head> 
+	<body id="photo"> 
+			<ul> 
+				<li><a href="{{ url }}"><img src="{{ url }}"></a></li>
+			</ul> 
+	</body> 
+</html>
