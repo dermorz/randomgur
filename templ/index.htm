@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html lang="en"> 
+<html> 
 	<head> 
 		<title>random imgur (possibly NSFW)</title> 
 		<style type="text/css" media="screen">
@@ -11,12 +11,12 @@
             }
 			div#picture { 
                 text-align: center;
-                height: 90%;
+                height: 85%;
                 background: url({{ url }}) 50% 50% no-repeat;
                 background-size: contain;
             }
             div#info {
-                height: 10%;
+                height: 15%;
                 width: 100%;
                 display: table;
             }
@@ -30,11 +30,23 @@
 
 		</style>
 	</head> 
-	<body> 
+	<body>
         <div id="picture"></div>
         <div id="info">
             <div id="cell">
-                <a href="{{ url }}">{{ url }}</a>
+                {% if title %}
+                <p>
+                    {{ title }}
+                </p>
+                {% endif %}
+                {% if caption %}
+                <p>
+                    {{ caption }}
+                </p>
+                {% endif %}
+                <p>
+                    <a href="{{ url }}">{{ url }}</a>
+                </p>
             </div>
         </div>
 	</body> 

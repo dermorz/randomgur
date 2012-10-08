@@ -40,12 +40,15 @@ class MainHandler(Handler):
             response_json = json.loads(response.content)
             if 'image' in response_json:
                 url = response_json['image']['links']['original']
+                title = response_json['image']['image']['title']
+                caption = response_json['image']['image']['caption']
                 break
             else:
                 logging.info('image not found.')
                 
         self.render('templ/index.htm', {'url': url,
-                                  'status': response_json})
+                                        'title': title,
+                                        'caption': caption})
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
